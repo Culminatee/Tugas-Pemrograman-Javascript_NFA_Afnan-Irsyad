@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas 2 Javascript</title>
+    <style>
+      table {
+        width: 35%;
+        border-collapse: collapse;
+        margin: 20px auto;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+        width: 40%;
+        text-align: center;
+      }
+      thead {
+        background-color: #333;
+        color: white;
+        text-align: center;
+      }
+      tfoot {
+        background-color: #ddd;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 align="center">Tugas 2</h2>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">Data Karyawan & Gaji</th>
+        </tr>
+      </thead>
+      <tbody id="gaji-body">
+        <!-- Data dari JS -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total Gaji</td>
+          <td id="total-gaji"></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <script>
+      let nama = "Dodi Prayodi";
+      let umur = 25;
+      let jabatan = "Manajer";
+      let status = "Menikah";
+      let gapok, tunjanganJabatan, BPJS, tunjanganKeluarga, totalGaji;
+
+      if (jabatan === "Manajer") gapok = 15000000;
+      else if (jabatan === "Asisten") gapok = 10000000;
+      else if (jabatan === "Staff") gapok = 5000000;
+      else gapok = 0;
+
+      tunjanganJabatan = gapok * 0.15;
+      BPJS = gapok * 0.1;
+      tunjanganKeluarga = status === "Menikah" ? gapok * 0.2 : 0;
+
+      totalGaji = gapok + tunjanganJabatan + tunjanganKeluarga + BPJS;
+
+      document.getElementById(
+        //fungsi bawaan DOM untuk mencari elemen HTML dengan id="gaji-body" dan memasukkan ke tabel tabel
+        "gaji-body"
+      ).innerHTML = `        
+      <tr><th>Nama</th> <td>${nama}</td></tr>       
+      <tr><th>Umur</th> <td>${umur}</td></tr>
+      <tr><th>Jabatan</th> <td>${jabatan}</td></tr>
+      <tr><th>Status</th> <td>${status}</td></tr>
+      <tr><th>Gaji Pokok</th> <td>Rp ${gapok.toLocaleString()}</td></tr>     
+      <tr><th>Tunjangan Jabatan</th> <td>Rp ${tunjanganJabatan.toLocaleString()}</td></tr>
+      <tr><th>Tunjangan Keluarga</th> <td>Rp ${tunjanganKeluarga.toLocaleString()}</td></tr>
+      <tr><th>BPJS</th> <td>Rp ${BPJS.toLocaleString()}</td></tr>
+    `; //tolocalestring untuk mengformat angka (seperti penggunaan titik/koma)
+
+      // isi tfoot
+      document.getElementById(
+        "total-gaji"
+      ).textContent = `Rp ${totalGaji.toLocaleString()}`;
+    </script>
+  </body>
+</html>
